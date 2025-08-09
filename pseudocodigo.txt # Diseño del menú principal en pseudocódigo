@@ -1,0 +1,17 @@
+Inicio 
+Imprimir: seleccione el numero de la opción que desea, 1. buscar curso 2. Registrar curso 3. mostrar notas 4. Mostar el promedio 5. nota máxima 6. nota mínima
+Escribir: Selección de Opción 
+Si selección  <= 5 entonces hacer 
+Mientras selección de opción 5 < = hacer 
+1. buscar curso
+2. registrar curso 
+3. mostrar notas
+4. mostrar promedio 
+5. nota máxima 
+6. nota mínima
+Fin mientras 
+Si no IMPRIMIR seleccione una opción valida para comenzar 
+Fin si 
+Fin del algoritmo 
+ 
+
