@@ -1,0 +1,32 @@
+// 3 ariables como enteros y una variable que usaremos para el promedio 
+
+N, I SumaDeNotascomo entero
+Promedio como real 
+//SumaDeNotas funcionara como un acumalador obtendra su valor atraves de las notas ingresadas 
+Promedio obtendra su valor atraves de todas las notas sumadas  y divididas entre el numero de notas ingresadas 
+
+
+Promedio = 0
+SumaDeNotas = 0
+
+Escribir " ingrese el numero de notas que ingresara al sistema " 
+leer CantidadDeNotas
+
+// bucle para procesar cada una de la notas ingresadas , utilizando las variables  N , I, Promedio , suma de notas . que previamente se definieron 
+
+
+para I desde 0 Hasta CantidadDeNota - 1 Hacer
+
+  Escribir " ingrese el valor de la nota " i
+
+// obtenemos el valor de la nota y la almacenamos en sumadenotas para luego obtener el nuevo dato para sumarlo con el dato anterior recolectado 
+   Leer ValorDeNotas
+
+  SumaDeNotas <- SumaDeNotas  + ValorDeNotas
+
+fin para 
+// la sumadenotas lo dividimos entre la cantidad de notas ingresadas para obtener el promedio 
+promedio <- SumaDeNotas / CantidadDeNotas
+
+Escribir "El promedio de las notas Ingresadas es de:  " Promedio 
+      
