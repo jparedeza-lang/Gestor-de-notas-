@@ -1,0 +1,12 @@
+CantidadDeNotas=int(input("ingrese el numero de notas que ingresara al sistema "))
+
+notas=[]
+
+for i in  range(0, CantidadDeNotas):
+   nota=(float(input(f"ingrese el puntaje de la nota numero {i+1}: ")))
+   notas.append(nota)
+if notas:
+    promedio=sum(notas)/len(notas)
+    print("el promedio de las notas es: ", promedio)
+else: 
+    print("no se ingresaron notas")
