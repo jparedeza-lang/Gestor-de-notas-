@@ -1,54 +1,65 @@
-CALCULAR_PROMEDIO_SIMPLIFICADO
+ PROGRAMA: CALCULAR_PROMEDIO_NOTAS
 
-INICIO DECLARACIÓN DE VARIABLES
+INICIO
+     DECLARACIÓN DE VARIABLES
     VARIABLES:
-        total_notas    : REAL   // Acumulador de la suma de todas las notas.
-        contador_notas : ENTERO // Contador de cuántas notas válidas se han ingresado.
-        nota_ingresada : CADENA // Entrada de texto del usuario (para validación).
-        promedio       : REAL   // Resultado final.
+        total_acumulado  : REAL   // Acumula la suma de todas las notas válidas.
+        contador         : ENTERO // Cuenta la cantidad de notas válidas ingresadas.
+        entrada_str      : CADENA // Almacena la entrada de texto del usuario.
+        nota_num         : REAL   // Almacena la nota convertida a número.
 
-    total_notas = 0
-    contador_notas = 0
+     INICIALIZACIÓN
+    total_acumulado = 0
+    contador = 0
     
     ESCRIBIR "--- REGISTRO DE NOTAS ---"
-    ESCRIBIR "Ingrese cada nota. Escriba 'FIN' para terminar y calcular."
+    ESCRIBIR "Ingrese cada nota (0-100). Escriba 'FIN' para terminar y calcular."
 
-     BUCLE PARA REGISTRAR NOTAS 
+      BUCLE PRINCIPAL PARA REGISTRAR NOTAS
     REPETIR
-        LEER nota_ingresada
-        nota_ingresada = LIMPIAR_ESPACIOS(nota_ingresada) 
+        ESCRIBIR "Ingrese nota: "
+        LEER entrada_str
+        entrada_str = LIMPIAR_ESPACIOS(entrada_str) // Requisito: Limpiar notas vacías (simula .strip()).
 
-        
-        SI NOTA_INGRESADA_ES_IGUAL_A(nota_ingresada, "FIN") ENTONCES
-            ROMPER // Finaliza el bucle de registro.
+          CONDICIÓN DE SALIDA
+        SI ES_IGUAL_A(entrada_str, "FIN") ENTONCES
+            ROMPER // Sale del bucle para ir a la fase de cálculo.
         FIN SI
 
-        SI ES_NUMERICO(nota_ingresada) ENTONCES
-            nota_num = CONVERTIR_A_REAL(nota_ingresada)
-
-            VALIDACIÓN DEL RANGO 
-            SI nota_num >= 0 Y nota_num <= 100 ENTONCES
-                // REGISTRO Y CÁLCULO
-                total_notas = total_notas + nota_num
-                contador_notas = contador_notas + 1
-                ESCRIBIR "Nota registrada."
-            SINO
-                ESCRIBIR "ERROR: La nota debe estar entre 0 y 100."
-            FIN SI
+         VALIDACIÓN BÁSICA: NO VACÍA Y NUMÉRICA
+        SI entrada_str ES VACIO ENTONCES
+            ESCRIBIR "ERROR: La nota no puede estar vacía."
         SINO
-            ESCRIBIR "ERROR: Ingrese solo números o 'FIN'."
-        FIN SI
+              Requisito: Validar que la entrada sea un número (simula try-except).
+            SI ES_NUMERICO(entrada_str) ENTONCES
+                nota_num = CONVERTIR_A_REAL(entrada_str)
+
+                  VALIDACIÓN DEL RANGO (ej. Notas deben estar entre 0 y 100)
+                SI nota_num >= 0 Y nota_num <= 100 ENTONCES
+                     REGISTRO y CÁLCULO ACUMULADO
+                    total_acumulado = total_acumulado + nota_num
+                    contador = contador + 1
+                    ESCRIBIR "Nota ", nota_num, " registrada con éxito."
+                SINO
+                    ESCRIBIR "ERROR: La nota debe estar entre 0 y 100."
+                FIN SI
+            SINO
+                ESCRIBIR "ERROR: Ingrese un valor numérico válido."
+            FIN SI
 
     FIN REPETIR
 
-     CaLCULO FINAL Y SALIDA
-    ESCRIBIR "--- RESULTADOS ---"
+     CÁLCULO DEL PROMEDIO
+    ESCRIBIR "--- RESULTADOS FINALES ---"
     
-    SI contador_notas > 0 ENTONCES
-        promedio = total_notas / contador_notas
-        ESCRIBIR "El promedio general de ", contador_notas, " notas es: ", REDONDEAR(promedio, 2)
+    // Condicional para verificar si hay datos para calcular
+    SI contador > 0 ENTONCES
+        promedio = total_acumulado / contador
+        ESCRIBIR "Total de notas válidas: ", contador
+        ESCRIBIR "Suma total: ", total_acumulado
+        ESCRIBIR "El promedio de las notas es: ", REDONDEAR(promedio, 2) // Mostrar promedio con precisión.
     SINO
-        ESCRIBIR "No se ingresaron notas válidas."
+        ESCRIBIR "No se registraron notas válidas para calcular el promedio."
     FIN SI
 
 FIN
