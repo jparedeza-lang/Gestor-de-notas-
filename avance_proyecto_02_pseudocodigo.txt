@@ -1,32 +1,54 @@
-// 3 ariables como enteros y una variable que usaremos para el promedio 
+CALCULAR_PROMEDIO_SIMPLIFICADO
 
-N, I SumaDeNotascomo entero
-Promedio como real 
-//SumaDeNotas funcionara como un acumalador obtendra su valor atraves de las notas ingresadas 
-Promedio obtendra su valor atraves de todas las notas sumadas  y divididas entre el numero de notas ingresadas 
+INICIO DECLARACIÓN DE VARIABLES
+    VARIABLES:
+        total_notas    : REAL   // Acumulador de la suma de todas las notas.
+        contador_notas : ENTERO // Contador de cuántas notas válidas se han ingresado.
+        nota_ingresada : CADENA // Entrada de texto del usuario (para validación).
+        promedio       : REAL   // Resultado final.
 
+    total_notas = 0
+    contador_notas = 0
+    
+    ESCRIBIR "--- REGISTRO DE NOTAS ---"
+    ESCRIBIR "Ingrese cada nota. Escriba 'FIN' para terminar y calcular."
 
-Promedio = 0
-SumaDeNotas = 0
+     BUCLE PARA REGISTRAR NOTAS 
+    REPETIR
+        LEER nota_ingresada
+        nota_ingresada = LIMPIAR_ESPACIOS(nota_ingresada) 
 
-Escribir " ingrese el numero de notas que ingresara al sistema " 
-leer CantidadDeNotas
+        
+        SI NOTA_INGRESADA_ES_IGUAL_A(nota_ingresada, "FIN") ENTONCES
+            ROMPER // Finaliza el bucle de registro.
+        FIN SI
 
-// bucle para procesar cada una de la notas ingresadas , utilizando las variables  N , I, Promedio , suma de notas . que previamente se definieron 
+        SI ES_NUMERICO(nota_ingresada) ENTONCES
+            nota_num = CONVERTIR_A_REAL(nota_ingresada)
 
+            VALIDACIÓN DEL RANGO 
+            SI nota_num >= 0 Y nota_num <= 100 ENTONCES
+                // REGISTRO Y CÁLCULO
+                total_notas = total_notas + nota_num
+                contador_notas = contador_notas + 1
+                ESCRIBIR "Nota registrada."
+            SINO
+                ESCRIBIR "ERROR: La nota debe estar entre 0 y 100."
+            FIN SI
+        SINO
+            ESCRIBIR "ERROR: Ingrese solo números o 'FIN'."
+        FIN SI
 
-para I desde 0 Hasta CantidadDeNota - 1 Hacer
+    FIN REPETIR
 
-  Escribir " ingrese el valor de la nota " i
+     CaLCULO FINAL Y SALIDA
+    ESCRIBIR "--- RESULTADOS ---"
+    
+    SI contador_notas > 0 ENTONCES
+        promedio = total_notas / contador_notas
+        ESCRIBIR "El promedio general de ", contador_notas, " notas es: ", REDONDEAR(promedio, 2)
+    SINO
+        ESCRIBIR "No se ingresaron notas válidas."
+    FIN SI
 
-// obtenemos el valor de la nota y la almacenamos en sumadenotas para luego obtener el nuevo dato para sumarlo con el dato anterior recolectado 
-   Leer ValorDeNotas
-
-  SumaDeNotas <- SumaDeNotas  + ValorDeNotas
-
-fin para 
-// la sumadenotas lo dividimos entre la cantidad de notas ingresadas para obtener el promedio 
-promedio <- SumaDeNotas / CantidadDeNotas
-
-Escribir "El promedio de las notas Ingresadas es de:  " Promedio 
-      
+FIN
